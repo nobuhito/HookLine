@@ -1,0 +1,56 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Default permissions for the main window",
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "core:default",
+    "core:tray:default",
+    "core:window:allow-show",
+    "core:window:allow-hide",
+    "core:window:allow-set-focus",
+    "core:window:allow-set-position",
+    "core:window:allow-set-size",
+    "global-shortcut:default",
+    {
+      "identifier": "fs:default",
+      "allow": [
+        { "path": "$APPDATA/*", "allow": ["read", "write"] },
+        { "path": "$APPDATA", "allow": ["read", "write"] },
+        { "path": "$APPCONFIG/*", "allow": ["read", "write"] },
+        { "path": "$APPCONFIG", "allow": ["read", "write"] },
+        { "path": "$RESOURCE/*", "allow": ["read", "write"] },
+        { "path": "$RESOURCE", "allow": ["read", "write"] }
+      ]
+    },
+    "fs:allow-write-text-file",
+    {
+      "identifier": "shell:allow-execute",
+      "allow": [
+        {
+          "name": "run-sh",
+          "cmd": "sh",
+          "args": [
+            "-c",
+            {
+              "validator": ".*"
+            }
+          ]
+        },
+        {
+          "name": "run-cmd",
+          "cmd": "cmd",
+          "args": [
+            "/C",
+            {
+              "validator": ".*"
+            }
+          ]
+        }
+      ]
+    },
+    "shell:default"
+  ]
+}
